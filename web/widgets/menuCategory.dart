@@ -16,6 +16,10 @@ class MenuCategory extends PolymerElement {
     getItem();
   }
 
+  void checkItem(Event e, var detail, var target) {
+    int id = int.parse(target.attributes['data-id']);
+  }
+  
   void categoryClicked (Event e, var detail, Node target) {
   	CoreCollapse menu = shadowRoot.querySelector("#menu");
   	menu.toggle();

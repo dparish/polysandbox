@@ -1,11 +1,18 @@
 <link rel="import" href="packages/polymer/polymer.html">
 <link rel="import" href="packages/core_elements/core_collapse.html">
+<link rel="import" href="packages/paper_elements/paper_checkbox.html">
 <link rel="import" href="packages/core_elements/core_item.html">
 <link rel="import" href="packages/core_elements/core_list_dart.html">
 
 <polymer-element name="menu-category">
   <template>
     <style>
+    paper-checkbox::shadow #ink {
+        top: -16px;
+        left: -16px;
+        width: 50px;
+        height: 50px;
+      }
       core-input {
         padding 0px 10px 0px 0px;
       }
@@ -26,6 +33,7 @@
         display : flex;
         flex-direction: row;
         cursor: pointer;
+        height: 50px;
       }
       .menuRow:hover {
         background-color: lightblue;
@@ -44,6 +52,7 @@
         <div id="menuItems">
             <template repeat="{{menuItem in menuItems}}">
               <div class="menuRow">
+                <paper-checkbox on-change="{{checkItem}}" data-id="{{menuItem.id}}"></paper-checkbox>
                 <div class="name">{{menuItem.name}}</div>
                 <div class="size">{{menuItem.size.name}}</div>
                 <div class="price">{{menuItem.price}}</div>
