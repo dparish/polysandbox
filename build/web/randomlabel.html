@@ -1,0 +1,13 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<polymer-element name="random-label">
+  <template>
+    <style>
+      #text {
+        font-size: 12pt;
+        padding: 20px;
+      }
+    </style>
+    <div id="text" on-click="{{clicked}}">{{label}}</div>
+  </template>
+  <script type="application/dart" src="randomlabel.dart"></script>
+</polymer-element>

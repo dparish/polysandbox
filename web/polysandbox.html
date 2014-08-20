@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample app</title>
+    <script src="packages/web_components/platform.js"></script>
+    <script src="packages/web_components/dart_support.js"></script>
+    <!-- import the click-counter -->
+    <link rel="import" href="clickcounter.html">
+    <link rel="import" href="widgets/echoWidget.html">
+    <link rel="import" href="widgets/menuCategory.html">
+    <link rel="import" href="randomlabel.html">
+    <link rel="import" href="packages/paper_elements/paper_input.html">
+    <link rel="import" href="packages/core_elements/core_input.html">
+    <link rel="import" href="packages/core_elements/core_collapse.html">
+    <script src="polysandbox.dart" type="application/dart"></script>
+    <script src="packages/browser/dart.js"></script>
+    <link rel="stylesheet" href="polysandbox.css">
+  </head>
+  <body unresolved>
+    <h1>Polysandbox</h1>
+    
+    <p>Hello world from Dart!</p>
+    
+    
+    <random-label label="click here"></random-label>
+    
+    <paper-input id="idinput" label="Type an id..."></paper-input>
+    <br/>
+
+    <core-input id="coreinput" placeholder="Type an id.."></core-input>
+    
+    <echo-widget></echo-widget>
+        
+    <div id="rootPanel"></div>
+    
+    <menu-category categoryName="lunch"></menu-category>
+    
+  </body>
+</html>

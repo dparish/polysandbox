@@ -1,0 +1,1142 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample app</title>
+    
+    
+    <!-- import the click-counter -->
+    
+    
+    
+    
+    
+    
+    
+  </head>
+  <body unresolved=""><script src="packages/web_components/platform.js"></script><script src="packages/web_components/dart_support.js"></script>
+
+
+
+<!-- unminfied for debugging:
+<link rel="import" href="src/js/polymer/layout.html">
+<script src="src/js/polymer/polymer.concat.js"></script>
+-->
+
+
+
+<style shim-shadowdom="">
+/*******************************
+          Flex Layout
+*******************************/
+
+html /deep/ [layout][horizontal], html /deep/ [layout][vertical] {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+html /deep/ [layout][horizontal][inline], html /deep/ [layout][vertical][inline] {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+html /deep/ [layout][horizontal] {
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+html /deep/ [layout][horizontal][reverse] {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+html /deep/ [layout][vertical] {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+html /deep/ [layout][vertical][reverse] {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+html /deep/ [layout][wrap] {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+html /deep/ [layout][wrap-reverse] {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+html /deep/ [flex] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html /deep/ [flex][auto] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+html /deep/ [flex][none] {
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+html /deep/ [flex][one] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html /deep/ [flex][two] {
+  -ms-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+html /deep/ [flex][three] {
+  -ms-flex: 3;
+  -webkit-flex: 3;
+  flex: 3;
+}
+
+html /deep/ [flex][four] {
+  -ms-flex: 4;
+  -webkit-flex: 4;
+  flex: 4;
+}
+
+html /deep/ [flex][five] {
+  -ms-flex: 5;
+  -webkit-flex: 5;
+  flex: 5;
+}
+
+html /deep/ [flex][six] {
+  -ms-flex: 6;
+  -webkit-flex: 6;
+  flex: 6;
+}
+
+html /deep/ [flex][seven] {
+  -ms-flex: 7;
+  -webkit-flex: 7;
+  flex: 7;
+}
+
+html /deep/ [flex][eight] {
+  -ms-flex: 8;
+  -webkit-flex: 8;
+  flex: 8;
+}
+
+html /deep/ [flex][nine] {
+  -ms-flex: 9;
+  -webkit-flex: 9;
+  flex: 9;
+}
+
+html /deep/ [flex][ten] {
+  -ms-flex: 10;
+  -webkit-flex: 10;
+  flex: 10;
+}
+
+html /deep/ [flex][eleven] {
+  -ms-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+
+html /deep/ [flex][twelve] {
+  -ms-flex: 12;
+  -webkit-flex: 12;
+  flex: 12;
+}
+
+/* alignment in cross axis */
+
+html /deep/ [layout][start] {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+html /deep/ [layout][center] {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+html /deep/ [layout][end] {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+/* alignment in main axis */
+
+html /deep/ [layout][start-justified] {
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+html /deep/ [layout][center-justified] {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+html /deep/ [layout][end-justified] {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+html /deep/ [layout][around-justified] {
+  -ms-flex-pack: around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+html /deep/ [layout][justified] {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+/* self alignment */
+
+html /deep/ [self-start] {
+  -ms-align-self: flex-start;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+
+html /deep/ [self-center] {
+  -ms-align-self: center;
+  -webkit-align-self: center;
+  align-self: center;
+}
+
+html /deep/ [self-end] {
+  -ms-align-self: flex-end;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+}
+
+html /deep/ [self-stretch] {
+  -ms-align-self: stretch;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+
+/*******************************
+          Other Layout
+*******************************/
+
+html /deep/ [block] {
+  display: block;
+}
+
+/* ie support for hidden */
+html /deep/ [hidden] {
+  display: none !important;
+}
+
+html /deep/ [relative] {
+  position: relative;
+}
+
+html /deep/ [fit] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body[fullbleed] {
+  margin: 0;
+  height: 100vh;
+}
+
+/*******************************
+            Other
+*******************************/
+
+html /deep/ [segment], html /deep/ segment {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0.5em;
+  padding: 1em;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+}
+
+</style><script src="packages/polymer/src/js/polymer/polymer.js"></script><script>
+// TODO(sigmund): remove this script tag (dartbug.com/19650). This empty
+// script tag is necessary to work around a bug in Chrome 36.
+</script><polymer-element name="click-counter" attributes="count">
+  <template>
+    <style>
+      div {
+        font-size: 24pt;
+        text-align: center;
+        margin-top: 140px;
+      }
+      button {
+        font-size: 24pt;
+        margin-bottom: 20px;
+      }
+    </style>
+    <div>
+      <button on-click="{{increment}}">Click me</button><br>
+      <span>(click count: {{count}})</span>
+    </div>
+  </template>
+  
+</polymer-element>
+
+
+<polymer-element name="random-label">
+  <template>
+    <style>
+      #text {
+        font-size: 12pt;
+        padding: 20px;
+      }
+    </style>
+    <div id="text" on-click="{{clicked}}">{{label}}</div>
+  </template>
+  
+</polymer-element>
+
+
+
+
+
+
+
+
+<script>
+// This empty script is here to workaround issue
+// https://github.com/dart-lang/core-elements/issues/11
+</script>
+
+
+
+
+
+
+<script>
+// This empty script is here to workaround issue
+// https://github.com/dart-lang/core-elements/issues/11
+</script><polymer-element name="core-input" attributes="value inputValue placeholder disabled multiline rows validate invalid">
+
+  <template>
+
+    <style>:host {
+  display: inline-block;
+  text-align: inherit;
+  color: #ccc;
+  position: relative;
+  width: 20em;
+}
+
+:host:hover {
+  cursor: text;
+}
+
+input,
+textarea {
+  font: inherit;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea[fit] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}</style>
+
+    <template if="{{multiline}}">
+      <textarea id="input" value="{{inputValue}}" rows="{{rows}}" fit?="{{rows === 'fit'}}" disabled?="{{disabled}}" placeholder="{{placeholder}}" aria-labelledby="placeholder" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}"></textarea>
+    </template>
+
+    <template if="{{!multiline}}">
+      <input id="input" value="{{inputValue}}" disabled?="{{disabled}}" placeholder="{{placeholder}}" aria-labelledby="placeholder" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{focusAction}}" on-blur="{{blurAction}}">
+    </template>
+
+  </template>
+
+  <script>
+
+    Polymer('core-input', {
+
+      /**
+       * Placeholder text that hints to the user what can be entered in
+       * the input.
+       *
+       * @attribute placeholder
+       * @type string
+       * @default ''
+       */
+      placeholder: '',
+
+      /**
+       * If true, this input cannot be focused and the user cannot change
+       * its value.
+       *
+       * @attribute disabled
+       * @type boolean
+       * @default false
+       */
+      disabled: false,
+
+      /**
+       * If true, this input accepts multi-line input like a `<textarea>`
+       *
+       * @attribute multiline
+       * @type boolean
+       * @default false
+       */
+      multiline: false,
+
+      /**
+       * (multiline only) The height of this text input in rows. The input
+       * will scroll internally if more input is entered beyond the size
+       * of the component. This property is meaningless if multiline is
+       * false. You can also set this property to "fit" and size the
+       * component with CSS to make the input fit the CSS size.
+       *
+       * @attribute rows
+       * @type number|'fit'
+       * @default 'fit'
+       */
+      rows: 'fit',
+
+      /**
+       * The current value of this input.
+       *
+       * @attribute inputValue
+       * @type string
+       * @default ''
+       */
+      inputValue: '',
+
+      /**
+       * The value of the input committed by the user, either by changing the
+       * inputValue and blurring the input, or by hitting the `enter` key.
+       *
+       * @attribute value
+       * @type string
+       * @default ''
+       */
+      value: '',
+
+      /**
+       * If this property is not null, the text input's inputValue will be
+       * validated. You can validate the value with either a regular expression
+       * or a custom function.
+       *
+       * To use a regular expression, set this property to a RegExp object or
+       * a string containing the regular expression to match against. To use a
+       * custom validator, set this property to a function with the signature
+       * function(value) that returns a boolean. The input is valid if the
+       * function returns true.
+       *
+       * Example:
+       *
+       *     // valid only if the value is a number
+       *     <core-input validate="^[0-9]*$"></core-input> 
+       * 
+       *     // valid only if the value is a number
+       *     this.$.input.validate = /^[0-9]*$/;
+       *
+       *     this.$.input2.validate = function(value) {
+       *         // valid only if the value is 'foo'
+       *         return value === 'foo';  
+       *     }
+       *
+       * @attribute validate
+       * @type string|RegExp|Function(value)
+       * @default null
+       */
+      validate: null,
+
+      /**
+       * If this property is true, the text input's inputValue failed validation.
+       *
+       * @attribute invalid
+       * @type boolean
+       * @default false
+       */
+      invalid: false,
+
+      validateValue: function() {
+        var valid = true;
+        if (!this.inputValue) {
+          valid = true;
+        } else if (typeof this.validate === 'string') {
+          valid = new RegExp(this.validate).exec(this.inputValue);
+        } else if (this.validate.exec) {
+          valid = this.validate.exec(this.inputValue);
+        } else if (this.validate instanceof Function) {
+          valid = this.validate.call(this.inputValue);
+        }
+        this.invalid = !valid;
+      },
+
+      invalidChanged: function() {
+        this.classList.toggle('invalid', this.invalid);
+        if (this.invalid) {
+          this.fire('input-invalid', {value: this.inputValue});
+        }
+      },
+
+      inputValueChanged: function() {
+        if (this.validate) {
+          this.validateValue();
+        }
+
+        if (!this.inputValue) {
+          this.value = '';
+        }
+      },
+
+      valueChanged: function() {
+        this.inputValue = this.value;
+      },
+
+      inputChangeAction: function() {
+        this.value = this.inputValue;
+        if (!window.ShadowDOMPolyfill) {
+          // re-fire non-bubbling event
+          this.fire('change', null, this, false);
+        }
+      },
+
+      focusAction: function() {
+        // re-fire non-bubbling event
+        this.fire('focus', null, this, false);
+      },
+
+      blurAction: function() {
+        // re-fire non-bubbling event
+        this.fire('blur', null, this, false);
+      }
+
+    });
+
+    CoreInput = function() {
+      return document.createElement('core-input');
+    };
+    CoreInput.validate = {
+      number: /^[0-9]*$/
+    };
+  </script>
+
+</polymer-element>
+<script>
+// This empty script is here to workaround issue
+// https://github.com/dart-lang/core-elements/issues/11
+</script><polymer-element name="paper-input" extends="core-input" attributes="label floatingLabel maxRows error" on-down="{{downAction}}" on-up="{{upAction}}">
+
+  <template>
+
+    <style>:host {
+  display: inline-block;
+  outline: none;
+  text-align: inherit;
+  color: #757575;
+}
+:host(:hover) {
+  cursor: text;
+}
+
+#container {
+  position: relative;
+}
+
+#inputClone,
+#minInputHeight,
+#maxInputHeight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  padding: 0.5em 0;
+}
+
+:host /deep/ input,
+:host /deep/ textarea {
+  font: inherit;
+  color: #000;
+  padding: 0;
+  /* Important to use margin here so the margin remains visible
+   * when textarea scrolls internally. */
+  margin: 0.5em 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.host /deep/ textarea {
+  resize: none;
+}
+
+.focusedColor {
+  color: #4059a9;
+  background: #4059a9;
+}
+
+:host(.invalid) #underline,
+:host(.invalid) #underlineHighlight,
+:host(.invalid) .focusedColor {
+  color: #d34336;
+  background: #d34336;
+}
+:host(.invalid) #floatedLabel {
+  color: #d34336;
+}
+
+#floatedLabel {
+  font-size: 0.75em;
+  background: transparent;
+  white-space: nowrap;
+}
+#floatedLabel.hidden {
+  visibility: hidden;
+}
+#floatedLabel.focused {
+  visibility: visible;
+}
+
+#label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em 0;
+  background: transparent;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+}
+#label.hidden {
+  display: none;
+}
+#label.animating {
+  /* TODO: transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+
+#labelSpan {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
+
+#errorContainer {
+  visibility: hidden;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+:host(.invalid) #errorContainer {
+  visibility: visible;
+}
+
+#error {
+  -webkit-flex: 1;
+  flex: 1;
+  color: #d34336;
+  font-size: 0.75em;
+  padding: 0.5em 0;
+}
+
+#errorIcon {
+  background-image: url(packages/paper_elements/src/paper-input/error-100.png);
+  background-size: 24px 24px;
+  height: 24px;
+  width: 24px;
+}
+
+
+@media (min-resolution: 2dppx) {
+  #errorIcon {
+    background-image: url(packages/paper_elements/src/paper-input/error-200.png);
+    background-size: 24px 24px;
+  }
+}
+
+#underlineContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1;
+}
+
+:host([multiline]) #underlineContainer {
+  bottom: auto;
+}
+
+:host([multiline]) #underlineContainer.animating {
+  transition: top 0.2s ease-in;
+}
+
+#underline {
+  height: 1px;
+  background: #757575;
+  border-bottom-color: #757575;
+}
+
+:host([disabled]) #underline {
+  border-bottom: 1px dashed;
+  height: 0px;
+  background: transparent;
+}
+
+#underlineHighlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  -webkit-transform: scale(0,2);
+  transform: scale(0,2);
+}
+#underlineHighlight.pressed {
+  -webkit-transform: scale(0.1,2);
+  transform: scale(0.1,2);
+  /* TODO: transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+#underlineHighlight.animating {
+  /* TODO: transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+#underlineHighlight.focused {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+#caret {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transform-origin-x: 0%;
+  transform-origin-x: 0%;
+  -webkit-transform: scaleX(1) translateX(10%);
+  transform: scaleX(1) translateX(10%);
+}
+#caret.animating {
+  display: block;
+   /* TODO: transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition: -webkit-transform 0.2s ease-out, opacity 0.2s ease-out;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.03, 1);
+}
+#caret.focused {
+  display: block;
+  opacity: 0.75;
+  -webkit-transform: scaleX(0) translateX(0);
+  transform: scaleX(0) translateX(0);
+}
+#caretInner {
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  height: 1.2em;
+  width: 25%;
+}
+</style>
+
+    <div id="floatedLabel" class="hidden"><span id="floatedLabelSpan">{{label}}</span></div>
+
+    <div id="container" on-transitionend="{{transitionEndAction}}" on-webkittransitionend="{{transitionEndAction}}">
+
+      <div id="label"><span id="labelSpan">{{label}}</span></div>
+
+      <div id="inputContainer">
+
+        <div id="inputClone">
+          <span id="inputCloneSpan" aria-hidden="true">&nbsp;</span>
+        </div>
+
+        <template if="{{multiline}}">
+          <div id="minInputHeight"></div>
+          <div id="maxInputHeight"></div>
+        </template>
+
+        <shadow></shadow>
+
+      </div>
+
+      <div id="underlineContainer">
+        <div id="underline"></div>
+        <div id="underlineHighlight" class="focusedColor"></div>
+      </div>
+
+      <div id="caret">
+        <div id="caretInner" class="focusedColor"></div>
+      </div>
+
+    </div>
+
+    <div id="errorContainer">
+      <div id="error" role="alert" aria-hidden="{{!invalid}}">{{error}}</div>
+      <div id="errorIcon"></div>
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer('paper-input', {
+
+      /**
+       * The label for this input. It normally appears as grey text inside
+       * the text input and disappears once the user enters text.
+       *
+       * @attribute label
+       * @type string
+       * @default ''
+       */
+      label: '',
+
+      /**
+       * If true, the label will "float" above the text input once the
+       * user enters text instead of disappearing.
+       *
+       * @attribute floatingLabel
+       * @type boolean
+       * @default false
+       */
+      floatingLabel: false,
+
+      /**
+       * (multiline only) If set to a non-zero value, the height of this
+       * text input will grow with the value changes until it is maxRows
+       * rows tall. If the maximum size does not fit the value, the text
+       * input will scroll internally.
+       *
+       * @attribute maxRows
+       * @type number
+       * @default 0
+       */
+      maxRows: 0,
+
+      focused: false,
+      pressed: false,
+
+      attached: function() {
+        if (this.multiline) {
+          this.resizeInput();
+          window.requestAnimationFrame(function() {
+            this.$.underlineContainer.classList.add('animating');
+          }.bind(this));
+        }
+      },
+
+      resizeInput: function() {
+        var height = this.$.inputClone.getBoundingClientRect().height;
+        var bounded = this.maxRows > 0 || this.rows > 0;
+        if (bounded) {
+          var minHeight = this.$.minInputHeight.getBoundingClientRect().height;
+          var maxHeight = this.$.maxInputHeight.getBoundingClientRect().height;
+          height = Math.max(minHeight, Math.min(height, maxHeight));
+        }
+        this.$.inputContainer.style.height = height + 'px';
+        this.$.underlineContainer.style.top = height + 'px';
+      },
+
+      rowsChanged: function() {
+        if (this.multiline && !isNaN(parseInt(this.rows))) {
+          this.$.minInputHeight.innerHTML = '';
+          for (var i = 0; i < this.rows; i++) {
+            this.$.minInputHeight.appendChild(document.createElement('br'));
+          }
+          this.resizeInput();
+        }
+      },
+
+      maxRowsChanged: function() {
+        if (this.multiline && !isNaN(parseInt(this.maxRows))) {
+          this.$.maxInputHeight.innerHTML = '';
+          for (var i = 0; i < this.maxRows; i++) {
+            this.$.maxInputHeight.appendChild(document.createElement('br'));
+          }
+          this.resizeInput();
+        }
+      },
+
+      inputValueChanged: function() {
+        this.super();
+
+        if (this.multiline) {
+          var escaped = this.inputValue.replace(/\n/gm, '<br>');
+          if (!escaped || escaped.lastIndexOf('<br>') === escaped.length - 4) {
+            escaped += '&nbsp';
+          }
+          this.$.inputCloneSpan.innerHTML = escaped;
+          this.resizeInput();
+        }
+
+        if (!this.floatingLabel) {
+          this.$.label.classList.toggle('hidden', this.inputValue);
+        }
+
+        if (this.floatingLabel && !this.focused) {
+          this.$.label.classList.toggle('hidden', this.inputValue);
+          this.$.floatedLabel.classList.toggle('hidden', !this.inputValue);
+        }
+      },
+
+      labelChanged: function() {
+        if (this.floatingLabel && this.$.floatedLabel && this.$.label) {
+          var toRect = this.$.floatedLabelSpan.getBoundingClientRect();
+          var fromRect = this.$.labelSpan.getBoundingClientRect();
+          this.$.label.cachedTransform = 'scale(' + (toRect.width / fromRect.width) + ') ' +
+            'translateY(' + (toRect.bottom - fromRect.bottom) + 'px)'
+        }
+      },
+
+      placeholderChanged: function() {
+        this.label = this.placeholder;
+      },
+
+      focusAction: function(e) {
+        if (!this.pressed) {
+          if (this.floatingLabel) {
+            this.$.floatedLabel.classList.remove('hidden');
+            this.$.floatedLabel.classList.add('focused');
+            this.$.floatedLabel.classList.add('focusedColor');
+          }
+          this.$.label.classList.add('hidden');
+          this.$.underlineHighlight.classList.add('focused');
+          this.$.caret.classList.add('focused');
+          this.$.input.focus();
+        }
+        this.focused = true;
+      },
+
+      blurAction: function() {
+        this.$.underlineHighlight.classList.remove('focused');
+        this.$.caret.classList.remove('focused');
+        if (this.floatingLabel) {
+          this.$.floatedLabel.classList.remove('focused');
+          this.$.floatedLabel.classList.remove('focusedColor');
+          if (!this.inputValue) {
+            this.$.floatedLabel.classList.add('hidden');
+          }
+        }
+        if (!this.inputValue) {
+          this.$.label.classList.remove('hidden');
+          this.$.label.classList.add('animating');
+          this.async(function() {
+            this.$.label.style.webkitTransform = 'none';
+          });
+        }
+        this.focused = false;
+      },
+
+      downAction: function(e) {
+        if (this.disabled) {
+          return;
+        }
+
+        if (this.focused) {
+          return;
+        }
+
+        this.pressed = true;
+        var rect = this.$.underline.getBoundingClientRect();
+        var right = e.x - rect.left;
+        this.$.underlineHighlight.style.webkitTransformOriginX = right + 'px';
+        this.$.underlineHighlight.classList.remove('focused');
+        this.underlineAsync = this.async(function() {
+          this.$.underlineHighlight.classList.add('pressed');
+        }, null, 200);
+
+        // No caret animation if there is text in the input.
+        if (!this.inputValue) {
+          var width = this.$.inputCloneSpan.getBoundingClientRect().width;
+          if (width < right) {
+            this.$.caret.style.left = width + 'px';
+            this.$.caret.classList.remove('focused');
+          }
+        }
+      },
+
+      upAction: function(e) {
+        if (this.disabled) {
+          return;
+        }
+
+        if (!this.pressed) {
+          return;
+        }
+
+        // if a touchevent caused the up, the synthentic mouseevents will blur
+        // the input, make sure to prevent those from being generated.
+        if (e._source === 'touch') {
+          e.preventDefault();
+        }
+
+        if (this.underlineAsync) {
+          clearTimeout(this.underlineAsync);
+          this.underlineAsync = null;
+        }
+
+        // Focus the input here to bring up the virtual keyboard.
+        this.$.input.focus();
+        this.pressed = false;
+        this.animating = true;
+
+        this.$.underlineHighlight.classList.remove('pressed');
+        this.$.underlineHighlight.classList.add('animating');
+        this.async(function() {
+          this.$.underlineHighlight.classList.add('focused');
+        });
+
+        // No caret animation if there is text in the input.
+        if (!this.inputValue) {
+          this.$.caret.classList.add('animating');
+          this.async(function() {
+            this.$.caret.classList.add('focused');
+          }, null, 100);
+        }
+
+        if (this.floatingLabel) {
+          this.$.label.classList.add('focusedColor');
+          this.$.label.classList.add('animating');
+          this.$.label.style.webkitTransform = this.$.label.cachedTransform;
+        }
+      },
+
+      keypressAction: function() {
+        if (this.animating) {
+          this.transitionEndAction();
+        }
+      },
+
+      transitionEndAction: function(e) {
+        this.animating = false;
+        if (this.pressed) {
+          return;
+        }
+
+        if (this.focused) {
+
+          if (this.floatingLabel || this.inputValue) {
+            this.$.label.classList.add('hidden');
+          }
+
+          if (this.floatingLabel) {
+            this.$.label.classList.remove('focusedColor');
+            this.$.label.classList.remove('animating');
+            this.$.floatedLabel.classList.remove('hidden');
+            this.$.floatedLabel.classList.add('focused');
+            this.$.floatedLabel.classList.add('focusedColor');
+          }
+
+          this.async(function() {
+            this.$.underlineHighlight.classList.remove('animating');
+            this.$.caret.classList.remove('animating');
+          }, null, 100);
+
+        } else {
+
+          this.$.label.classList.remove('animating');
+
+        }
+      }
+
+    });
+
+  </script>
+
+</polymer-element>
+<style>body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
+}
+
+h1, p {
+  color: #333;
+}
+
+#sample_container_id {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+
+</style>
+    <h1>Polysandbox</h1>
+    
+    <p>Hello world from Dart!</p>
+    
+    <div id="sample_container_id">
+      <click-counter count="5"></click-counter>
+    </div>
+    
+    <random-label label="click here"></random-label>
+    
+    <paper-input label="Type something..."></paper-input>
+
+  
+
+<script type="application/dart" src="polysandbox.html_bootstrap.dart"></script><script src="packages/browser/dart.js"></script></body></html>

@@ -1,0 +1,27 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_collapse.html">
+<link rel="import" href="packages/core_elements/core_item.html">
+
+<polymer-element name="menu-category">
+  <template>
+    <style>
+      #container {
+        font-size: 12pt;
+        padding: 20px;
+      }
+      core-input {
+        padding 0px 10px 0px 0px;
+      }
+    </style>
+    <div id="container">
+      <core-item label="{{categoryName}}" on-click="{{categoryClicked}}"></core-item>
+      <core-collapse id="menu">
+        <template repeat="{{menuItem in menuItems}}">
+          <div>{{menuItem.name}}</div>
+        </template>
+      </core-collapse>
+    </div>
+    
+  </template>
+  <script type="application/dart" src="menuCategory.dart"></script>
+</polymer-element>

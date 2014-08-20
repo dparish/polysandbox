@@ -1,0 +1,23 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_input.html">
+<link rel="import" href="packages/core_elements/core_item.html">
+
+<polymer-element name="echo-widget">
+  <template>
+    <style>
+      #container {
+        font-size: 12pt;
+        padding: 20px;
+      }
+      core-input {
+        padding 0px 10px 0px 0px;
+      }
+    </style>
+    <div id="container">
+      <core-input placeholder="type here for echo" on-change="{{textChanged}}"></core-input>
+      <core-item label={{typedValue}}></core-item>
+    </div>
+    
+  </template>
+  <script type="application/dart" src="echoWidget.dart"></script>
+</polymer-element>
