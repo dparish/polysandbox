@@ -16,6 +16,7 @@ class MenuItem extends Model {
   Model category;
   Model size;
   double price;
+  String selected;
   
   MenuItem(int id, String name, this.category, this.size, this.price) : super(id, name);
   

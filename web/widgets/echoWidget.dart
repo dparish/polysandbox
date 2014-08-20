@@ -1,7 +1,6 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html';
 import 'package:core_elements/core_input.dart';
-import 'package:core_elements/core_item.dart';
 
 /**
  * A Polymer click counter element.

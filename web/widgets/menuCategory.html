@@ -1,24 +1,55 @@
 <link rel="import" href="packages/polymer/polymer.html">
 <link rel="import" href="packages/core_elements/core_collapse.html">
 <link rel="import" href="packages/core_elements/core_item.html">
+<link rel="import" href="packages/core_elements/core_list_dart.html">
 
 <polymer-element name="menu-category">
   <template>
     <style>
-      #container {
-        font-size: 12pt;
-        padding: 20px;
-      }
       core-input {
         padding 0px 10px 0px 0px;
+      }
+      .menuItems {
+        padding: 0px 10px;
+      }
+      .name {
+        flex: 1;
+      }
+      .size {
+      }
+      .price {
+        text-align: right;
+        padding: 0px 10px;
+        width: 80px;
+      }
+      .menuRow {
+        display : flex;
+        flex-direction: row;
+        cursor: pointer;
+      }
+      .menuRow:hover {
+        background-color: lightblue;
       }
     </style>
     <div id="container">
       <core-item label="{{categoryName}}" on-click="{{categoryClicked}}"></core-item>
       <core-collapse id="menu">
-        <template repeat="{{menuItem in menuItems}}">
-          <div>{{menuItem.name}}</div>
-        </template>
+        <!--
+        <core-list-dart data="{{menuItems}}">
+          <template>
+            <div class="{{ {selected: selected} | tokenList }}">{{name}}</div>
+          </template>
+        </core-list-dart>
+        -->
+        <div id="menuItems">
+            <template repeat="{{menuItem in menuItems}}">
+              <div class="menuRow">
+                <div class="name">{{menuItem.name}}</div>
+                <div class="size">{{menuItem.size.name}}</div>
+                <div class="price">{{menuItem.price}}</div>
+              </div>
+            </template>
+          </div>
       </core-collapse>
     </div>
     

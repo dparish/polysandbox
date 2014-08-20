@@ -9,7 +9,7 @@ import 'package:core_elements/core_collapse.dart';
  */
 @CustomTag('menu-category')
 class MenuCategory extends PolymerElement {
-  @observable List<MenuItem> menuItems;
+  @observable ObservableList<MenuItem> menuItems;
   @published String categoryName;
   
   MenuCategory.created() : super.created() {
@@ -37,7 +37,7 @@ class MenuCategory extends PolymerElement {
 
   void handleJson(String response) {
     List data = JSON.decode(response);
-    menuItems = new List();
+    menuItems = new ObservableList();
     data.forEach((menuItem) => menuItems.add(new MenuItem.fromJson(menuItem)));
 //    for(Map itemMap in data) {
 //      menuItems.add(new MenuItem.fromJson(itemMap));
